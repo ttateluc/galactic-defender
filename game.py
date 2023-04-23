@@ -4,6 +4,7 @@ import sys
 from pygame.locals import *
 import random
 import math
+from pygame import mixer
 
 clock = pygame.time.Clock() # regulates the game's framerate
 pygame.init() # initializes pygame
@@ -52,6 +53,12 @@ bg = pygame.image.load('assets/bg.png').convert_alpha() # background-image load 
 start_bg = pygame.image.load('assets/start_bg.png').convert_alpha() # start screen-image load optimization
 menu_bg = pygame.image.load('assets/menu_bg.png').convert_alpha() # menu screen-image load optimization
 over_bg = pygame.image.load('assets/over_bg.png').convert_alpha() # game over screen-image load optimization
+
+# background music
+mixer.init() # initialize mixer
+mixer.music.load('assets/music/bg.mp3') # background music load optimization
+mixer.music.set_volume(0.1) # set the volume of the background music to 20%
+mixer.music.play() # play the background music
 
 #player and enemy
 p = pygame.image.load('assets/p.png').convert_alpha() # protagonist-image load optimization
@@ -103,7 +110,6 @@ def change_cursor():
 
 
 class Button:
-    # button initialization
     def __init__(self, image, x, y): # x and y are the coordinates of the button
         self.image = image # image of the button
         self.rect = self.image.get_rect() # make a rectangular button
